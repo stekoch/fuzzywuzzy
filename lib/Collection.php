@@ -1,6 +1,9 @@
 <?php
 
+
 namespace FuzzyWuzzy;
+
+use Traversable;
 
 /**
  * Collection provides an array-like interface for working with a set of elements.
@@ -59,7 +62,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      * @throws \InvalidArgumentException When $cmp is not a valid for
      * difference.
      */
-    public function difference($cmp)
+    public function difference($cmp) : Collection
     {
         return new static(array_diff($this->elements, static::coerce($cmp)->toArray()));
     }
@@ -76,7 +79,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
     /**
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator() : Traversable
     {
         return new \ArrayIterator($this->elements);
     }
@@ -154,7 +157,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset) : bool
     {
         return isset ($this->elements[$offset]);
     }
@@ -172,7 +175,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value) : void
     {
         if (!is_null($offset)) {
             $this->elements[$offset] = $value;
@@ -185,7 +188,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
     /**
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset) : void
     {
         unset($this->elements[$offset]);
     }
@@ -195,7 +198,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      *
      * @return static
      */
-    public function reverse()
+    public function reverse() : Collection
     {
         return new static(array_reverse($this->elements));
     }
