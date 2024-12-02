@@ -166,7 +166,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset) : mixed
     {
         return isset ($this->elements[$offset]) ? $this->elements[$offset] : null;
     }
