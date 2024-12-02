@@ -154,7 +154,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      * @param mixed $offset
      * @return bool
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset) : bool
     {
         return isset ($this->elements[$offset]);
     }
@@ -163,7 +163,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate, \Countable
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset) : mixed
     {
         return isset ($this->elements[$offset]) ? $this->elements[$offset] : null;
     }
